@@ -493,18 +493,6 @@ This is a reference implementation for cybersecurity LLM pipelines. Contribution
 
 ---
 
-## 📄 License
-
-MIT License - See LICENSE file for details.
-
-**Data License Notes:**
-- ATT&CK: Apache 2.0
-- CWE/CAPEC: Public domain (MITRE)
-- NVD: Public domain (NIST)
-- Sigma: DRL (Detection Rule License)
-
----
-
 ## 🚀 Next Steps
 
 1. **Expand RAG Sources:**
