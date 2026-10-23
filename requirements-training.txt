@@ -1,0 +1,24 @@
+# Core ML/LLM Training & Quantization (Requires GPU/CUDA)
+torch>=2.1.0
+transformers>=4.36.0
+accelerate>=0.25.0
+peft>=0.7.0
+bitsandbytes>=0.41.0
+trl>=0.7.0
+datasets>=2.16.0
+
+# Ray for cluster serving
+ray[serve]>=2.31.0
+aiohttp>=3.9.0
+
+# Evaluation
+rouge-score>=0.1.2
+bert-score>=0.3.13
+sacrebleu>=2.3.1
+wandb>=0.16.0
+
+# Development
+ipykernel>=6.27.0
+jupyter>=1.0.0
+black>=23.12.0
+pytest>=7.4.0

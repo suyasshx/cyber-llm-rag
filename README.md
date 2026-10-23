@@ -11,6 +11,37 @@ A **production-ready** cybersecurity AI system combining **Retrieval-Augmented G
 **✅ Production Ready:** Deployed on Kubernetes with Ray Serve, achieving **10,576 docs/sec** processing speed (83x optimized).
 **✅ Well Documented:** 2,900+ lines of comprehensive documentation including deployment guides and test reports.
 
+---
+
+## 🌐 Free & Instant 1-Click Live Deployment
+
+The project includes a **Cyberpunk SOC Streamlit Web UI** (`app.py`) and a **lightweight FastAPI REST service** (`src/serving/fastapi_app.py`) powered by free, lightning-fast LLM inference (**Groq API** with Llama-3.3-70B or OpenAI).
+
+### 🚀 Option 1: Streamlit Community Cloud (Recommended — 100% Free & Fast)
+1. Go to [share.streamlit.io](https://share.streamlit.io/) and log in with your GitHub account.
+2. Click **"New app"**.
+3. Select repository: `suyasshx/cyber-llm-rag`, Branch: `main`, Main file path: `app.py`.
+4. (Optional) In **Advanced settings > Secrets**, add your free Groq API key:
+   ```toml
+   GROQ_API_KEY = "gsk_..."
+   ```
+   *(Get a free key in 30 seconds at [console.groq.com](https://console.groq.com)).*
+5. Click **"Deploy"**! You'll get a permanent public URL (e.g., `https://cyberllm-rag.streamlit.app`).
+
+### 🤗 Option 2: Hugging Face Spaces (100% Free — 16 GB RAM)
+1. Go to [huggingface.co/new-space](https://huggingface.co/new-space).
+2. Name your space (e.g. `cyberllm-rag`), choose **Streamlit** as SDK.
+3. Connect your GitHub repository `suyasshx/cyber-llm-rag` or push directly.
+4. In **Settings > Variables and secrets**, add `GROQ_API_KEY`.
+
+### 🐳 Option 3: Docker / Render REST API
+```bash
+docker build -t cyberllm-rag .
+docker run -p 8501:8501 -e GROQ_API_KEY="your-key" cyberllm-rag
+```
+
+---
+
 ## 🎯 Features
 
 ### 1. **RAG MVP** - Instant Cybersecurity Knowledge Base

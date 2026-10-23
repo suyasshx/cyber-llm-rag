@@ -1,0 +1,137 @@
+[
+  {
+    "id": "attack-T1059",
+    "name": "Command and Scripting Interpreter",
+    "source_type": "attack",
+    "technique_id": "T1059",
+    "tactics": ["Execution"],
+    "content": "Technique: Command and Scripting Interpreter (T1059)\nTactics: Execution\nDescription: Adversaries may abuse command and script interpreters to execute commands, scripts, or binaries. These interfaces and languages provide a way to interact with computer systems and are common features of many operating systems. Interpreters include PowerShell (T1059.001), AppleScript (T1059.002), Windows Command Shell (cmd.exe - T1059.003), Unix Shell (bash/sh - T1059.004), Visual Basic (T1059.005), Python (T1059.006), and JavaScript (T1059.007).\nMitigation: Restrict script execution via execution policies (e.g., PowerShell ConstrainedLanguage mode), utilize Application Control / AppLocker, and monitor process creation with command-line arguments (Sysmon Event ID 1).",
+    "url": "https://attack.mitre.org/techniques/T1059/"
+  },
+  {
+    "id": "attack-T1003",
+    "name": "OS Credential Dumping",
+    "source_type": "attack",
+    "technique_id": "T1003",
+    "tactics": ["Credential Access"],
+    "content": "Technique: OS Credential Dumping (T1003)\nTactics: Credential Access\nDescription: Adversaries may attempt to dump credentials to obtain account login and credential material, normally in the form of a hash or a clear text password, from the operating system and software. Sub-techniques include LSASS Memory (T1003.001), Security Account Manager (SAM - T1003.002), LSA Secrets (T1003.004), and NTDS.dit (T1003.003). Tools like Mimikatz, ProcDump, and secretsdump are commonly used.\nMitigation: Enable Credential Guard on Windows, configure Protected Process Light (PPL) for LSASS (RunAsPPL), restrict debug privileges (SeDebugPrivilege), and monitor access handles to lsass.exe.",
+    "url": "https://attack.mitre.org/techniques/T1003/"
+  },
+  {
+    "id": "attack-T1566",
+    "name": "Phishing",
+    "source_type": "attack",
+    "technique_id": "T1566",
+    "tactics": ["Initial Access"],
+    "content": "Technique: Phishing (T1566)\nTactics: Initial Access\nDescription: Adversaries may send phishing messages to gain access to victim systems. All forms of phishing are electronically delivered social engineering. Sub-techniques include Spearphishing Attachment (T1566.001), Spearphishing Link (T1566.002), and Spearphishing via Service (T1566.003).\nMitigation: Implement anti-spoofing technologies (SPF, DKIM, DMARC), email filtering with detonation sandboxes, endpoint attachment execution controls, and regular user awareness training.",
+    "url": "https://attack.mitre.org/techniques/T1566/"
+  },
+  {
+    "id": "attack-T1486",
+    "name": "Data Encrypted for Impact",
+    "source_type": "attack",
+    "technique_id": "T1486",
+    "tactics": ["Impact"],
+    "content": "Technique: Data Encrypted for Impact (T1486)\nTactics: Impact\nDescription: Adversaries may encrypt data on target systems or large numbers of systems in a network to interrupt availability to system and network resources. They can attempt to render stored data and files unusable by encrypting files using strong symmetric and asymmetric encryption algorithms. Common in Ransomware operations (e.g., LockBit, BlackCat, Conti).\nMitigation: Maintain immutable offline backups, test restoration procedures frequently, monitor for mass file write/rename operations, restrict access to backup repositories, and deploy canary files.",
+    "url": "https://attack.mitre.org/techniques/T1486/"
+  },
+  {
+    "id": "attack-T1078",
+    "name": "Valid Accounts",
+    "source_type": "attack",
+    "technique_id": "T1078",
+    "tactics": ["Initial Access", "Persistence", "Privilege Escalation", "Defense Evasion"],
+    "content": "Technique: Valid Accounts (T1078)\nTactics: Initial Access, Persistence, Privilege Escalation, Defense Evasion\nDescription: Adversaries may obtain and abuse credentials of existing accounts as a means of gaining Initial Access, Persistence, Privilege Escalation, or Defense Evasion. Accounts can be default, local, domain, or cloud accounts. Credentials may be acquired through credential dumping, brute forcing, purchasing on dark web forums, or password spraying.\nMitigation: Enforce Multi-Factor Authentication (MFA) with phishing-resistant protocols (FIDO2/WebAuthn), implement conditional access policies, disable inactive accounts, and audit anomalous login locations.",
+    "url": "https://attack.mitre.org/techniques/T1078/"
+  },
+  {
+    "id": "attack-T1190",
+    "name": "Exploit Public-Facing Application",
+    "source_type": "attack",
+    "technique_id": "T1190",
+    "tactics": ["Initial Access"],
+    "content": "Technique: Exploit Public-Facing Application (T1190)\nTactics: Initial Access\nDescription: Adversaries may attempt to exploit a weakness in an Internet-facing computer or program using software, bugs, glitches, or vulnerabilities in order to cause unintended or unanticipated behavior. Common examples include vulnerabilities in VPN gateways (Citrix, Fortinet), web servers, or exposed APIs.\nMitigation: Apply security patches promptly, deploy Web Application Firewalls (WAF), enforce network segmentation with DMZs, and conduct regular external attack surface management (EASM).",
+    "url": "https://attack.mitre.org/techniques/T1190/"
+  },
+  {
+    "id": "cwe-89",
+    "name": "Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')",
+    "source_type": "cwe",
+    "technique_id": "CWE-89",
+    "tactics": ["Vulnerability"],
+    "content": "CWE-89: SQL Injection (SQLi)\nCategory: Input Validation Vulnerability\nDescription: The software constructs all or part of an SQL command using externally-influenced input from an upstream component, but it does not neutralize or incorrectly neutralizes special elements that could modify the intended SQL command when it is sent to a database engine.\nImpact: Unauthorized read/modify/delete access to database data, bypass of authentication mechanisms, and in some database configurations (e.g. xp_cmdshell in MSSQL), remote code execution on the underlying host.\nRemediation: Always use parameterized queries (prepared statements) or Object-Relational Mappers (ORMs). Use stored procedures with parameterization. Avoid dynamic string concatenation. Apply least privilege database access accounts.",
+    "url": "https://cwe.mitre.org/data/definitions/89.html"
+  },
+  {
+    "id": "cwe-79",
+    "name": "Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting')",
+    "source_type": "cwe",
+    "technique_id": "CWE-79",
+    "tactics": ["Vulnerability"],
+    "content": "CWE-79: Cross-Site Scripting (XSS)\nCategory: Output Encoding Vulnerability\nDescription: The software does not neutralize or incorrectly neutralizes user-controllable input before it is placed in output that is used as a web page that is served to other users. Types include Stored (Persistent) XSS, Reflected (Non-Persistent) XSS, and DOM-based XSS.\nImpact: Execution of arbitrary malicious JavaScript in victim's browser, session hijacking via cookie theft, redirection to phishing sites, and defacement.\nRemediation: Context-aware output encoding (HTML, JavaScript, CSS, URL encoding), use of modern frameworks with auto-escaping (React, Angular), implementation of strict Content Security Policy (CSP) headers, and setting the HttpOnly flag on sensitive cookies.",
+    "url": "https://cwe.mitre.org/data/definitions/79.html"
+  },
+  {
+    "id": "cwe-78",
+    "name": "Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection')",
+    "source_type": "cwe",
+    "technique_id": "CWE-78",
+    "tactics": ["Vulnerability"],
+    "content": "CWE-78: OS Command Injection\nCategory: Injection Vulnerability\nDescription: The software constructs all or part of an OS command using externally-influenced input from an upstream component, but it does not neutralize or incorrectly neutralizes special elements that could modify the intended OS command when it is sent to a downstream component.\nImpact: Full control over the server host operating system with privileges of the executing application process.\nRemediation: Avoid executing operating system commands directly from application code. If necessary, use built-in programming language APIs (e.g. subprocess with list arguments and shell=False in Python) rather than system shells. Perform strict allowlist input validation.",
+    "url": "https://cwe.mitre.org/data/definitions/78.html"
+  },
+  {
+    "id": "cwe-918",
+    "name": "Server-Side Request Forgery (SSRF)",
+    "source_type": "cwe",
+    "technique_id": "CWE-918",
+    "tactics": ["Vulnerability"],
+    "content": "CWE-918: Server-Side Request Forgery (SSRF)\nCategory: Authorization / Input Validation\nDescription: The web server receives a URL or request destination from an external client and retrieves data from the specified URL without properly validating whether the destination is internal or unauthorized.\nImpact: Access to internal cloud metadata services (e.g., AWS IMDSv1 at 169.254.169.254 to steal IAM temporary credentials), port scanning of internal network, and exploitation of unauthenticated internal services.\nRemediation: Enforce strict allowlists of allowable remote hosts/IPs, enforce AWS IMDSv2 (session token required), block requests to private IP ranges (RFC 1918, loopback, link-local), and disable HTTP redirections on outgoing client requests.",
+    "url": "https://cwe.mitre.org/data/definitions/918.html"
+  },
+  {
+    "id": "cve-2024-3094",
+    "name": "XZ Utils Backdoor (CVE-2024-3094)",
+    "source_type": "cve",
+    "technique_id": "CVE-2024-3094",
+    "tactics": ["Supply Chain Compromise", "Initial Access"],
+    "content": "CVE-2024-3094: XZ Utils / liblzma Malicious Code Injection\nCVSS Score: 10.0 (Critical)\nAffected Versions: xz-utils 5.6.0 and 5.6.1\nDescription: Malicious code was discovered in the upstream tarballs of xz-utils starting from version 5.6.0. Through complex obfuscation introduced during release tarball creation, a backdoor was injected into liblzma. When OpenSSH's sshd links against systemd-notify (which pulled in liblzma on certain Linux distributions like Debian testing, Fedora 40/Rawhide, and openSUSE), the backdoor hooked RSA_public_decrypt to permit remote unauthorized authentication and arbitrary command execution.\nRemediation: Downgrade xz-utils to 5.4.x or update to unaffected vendor patches. Revoke any SSH keys or secrets exposed on potentially affected instances.",
+    "url": "https://nvd.nist.gov/vuln/detail/CVE-2024-3094"
+  },
+  {
+    "id": "cve-2021-44228",
+    "name": "Apache Log4j2 JNDI RCE ('Log4Shell')",
+    "source_type": "cve",
+    "technique_id": "CVE-2021-44228",
+    "tactics": ["Remote Code Execution"],
+    "content": "CVE-2021-44228: Apache Log4j2 JNDI Remote Code Execution ('Log4Shell')\nCVSS Score: 10.0 (Critical)\nAffected Versions: Apache Log4j 2.0-beta9 through 2.15.0\nDescription: Apache Log4j2 JNDI features used in configuration, log messages, and parameters do not protect against attacker controlled LDAP and other JNDI related endpoints. An attacker who can control log messages or log message parameters can execute arbitrary code loaded from LDAP servers when message lookup substitution is enabled.\nRemediation: Upgrade to Log4j 2.17.1 or later. In legacy systems, remove the JndiLookup class from the classpath (zip -q -d log4j-core-*.jar org/apache/logging/log4j/core/lookup/JndiLookup.class) or set log4j2.formatMsgNoLookups=true.",
+    "url": "https://nvd.nist.gov/vuln/detail/CVE-2021-44228"
+  },
+  {
+    "id": "cve-2023-34362",
+    "name": "MOVEit Transfer SQL Injection to RCE",
+    "source_type": "cve",
+    "technique_id": "CVE-2023-34362",
+    "tactics": ["Initial Access", "Data Theft"],
+    "content": "CVE-2023-34362: Progress MOVEit Transfer SQL Injection\nCVSS Score: 9.8 (Critical)\nAffected Versions: MOVEit Transfer before 2021.0.6, 2021.1.4, 2022.0.4, 2022.1.5, 2023.0.1\nDescription: In Progress MOVEit Transfer before versions patched in June 2023, an SQL injection vulnerability in the MOVEit Transfer web application could allow an unauthenticated attacker to gain access to MOVEit Transfer's database. Exploited by the CL0P ransomware group to drop human2.aspx webshells and exfiltrate massive volumes of corporate and governmental files.\nRemediation: Apply Progress security patches immediately, block external HTTP/HTTPS traffic to MOVEit until patched, audit for unexpected ASPX files in web roots, and review database user activity.",
+    "url": "https://nvd.nist.gov/vuln/detail/CVE-2023-34362"
+  },
+  {
+    "id": "sigma-proc-creation-mimikatz",
+    "name": "Mimikatz Command Line Detection",
+    "source_type": "sigma",
+    "technique_id": "Sigma-Proc-001",
+    "tactics": ["Credential Access"],
+    "content": "Sigma Rule: Mimikatz Execution Detection\nLog Source: Windows Event ID 4688 / Sysmon Event ID 1 (Process Creation)\nDetection Logic:\n  selection:\n    CommandLine|contains:\n      - 'sekurlsa:'\n      - 'lsadump::'\n      - 'privilege::debug'\n      - 'crypto::'\n      - 'kerberos::'\n  condition: selection\nFalse Positives: Very low; administrative tools rarely invoke these exact strings unless automated penetration testing is occurring.\nResponse: Immediately isolate the affected host, revoke active user session tokens, and collect memory dump of lsass.exe for forensic validation.",
+    "url": "https://github.com/SigmaHQ/sigma"
+  },
+  {
+    "id": "sigma-powershell-enc",
+    "name": "Encoded PowerShell Command Execution",
+    "source_type": "sigma",
+    "technique_id": "Sigma-Proc-002",
+    "tactics": ["Execution", "Defense Evasion"],
+    "content": "Sigma Rule: Suspicious Encoded PowerShell Execution\nLog Source: Windows Event ID 4688 / Sysmon Event ID 1 / PowerShell 4104\nDetection Logic:\n  selection:\n    Image|endswith: '\\powershell.exe'\n    CommandLine|contains:\n      - ' -enc '\n      - ' -encodedcommand '\n      - ' -e '\n      - ' -noprofile -w hidden -enc'\n  condition: selection\nFalse Positives: Certain enterprise management software (SCCM, software installers) occasionally use encoded commands. Cross-reference with parent process.\nResponse: Decode the base64 command string, inspect extracted payloads or URLs, and check network logs for outbound C2 connections.",
+    "url": "https://github.com/SigmaHQ/sigma"
+  }
+]
